@@ -99,8 +99,10 @@ public:
 
     ~Student() 
     {
-        if (grade_of_practic != nullptr)
-            delete[] grade_of_practic;
+        if (grade_of_practic != nullptr || grade_of_homework!= nullptr || grade_of_exam != nullptr)
+        delete[] grade_of_practic;
+        delete[]grade_of_homework;
+        delete[]grade_of_exam;
     }
     ///////
     void PrintStudent()
