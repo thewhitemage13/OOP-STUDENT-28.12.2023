@@ -1,0 +1,18 @@
+﻿  OOP 23.12 STUDENT.cpp
+D:\C++\C++ OOP\OOP 23.12 STUDENT\OOP 23.12 STUDENT\OOP 23.12 STUDENT.cpp(117,27): warning C4018: <: несоответствие типов со знаком и без знака
+D:\C++\C++ OOP\OOP 23.12 STUDENT\OOP 23.12 STUDENT\OOP 23.12 STUDENT.cpp(125,27): warning C4018: <: несоответствие типов со знаком и без знака
+D:\C++\C++ OOP\OOP 23.12 STUDENT\OOP 23.12 STUDENT\OOP 23.12 STUDENT.cpp(132,27): warning C4018: <: несоответствие типов со знаком и без знака
+D:\C++\C++ OOP\OOP 23.12 STUDENT\OOP 23.12 STUDENT\OOP 23.12 STUDENT.cpp(140,27): warning C4018: <: несоответствие типов со знаком и без знака
+D:\C++\C++ OOP\OOP 23.12 STUDENT\OOP 23.12 STUDENT\OOP 23.12 STUDENT.cpp(163,27): warning C4018: <: несоответствие типов со знаком и без знака
+D:\C++\C++ OOP\OOP 23.12 STUDENT\OOP 23.12 STUDENT\OOP 23.12 STUDENT.cpp(171,27): warning C4018: <: несоответствие типов со знаком и без знака
+D:\C++\C++ OOP\OOP 23.12 STUDENT\OOP 23.12 STUDENT\OOP 23.12 STUDENT.cpp(178,27): warning C4018: <: несоответствие типов со знаком и без знака
+D:\C++\C++ OOP\OOP 23.12 STUDENT\OOP 23.12 STUDENT\OOP 23.12 STUDENT.cpp(189,27): warning C4018: <: несоответствие типов со знаком и без знака
+D:\C++\C++ OOP\OOP 23.12 STUDENT\OOP 23.12 STUDENT\OOP 23.12 STUDENT.cpp(211,27): warning C4018: <: несоответствие типов со знаком и без знака
+D:\C++\C++ OOP\OOP 23.12 STUDENT\OOP 23.12 STUDENT\OOP 23.12 STUDENT.cpp(219,27): warning C4018: <: несоответствие типов со знаком и без знака
+D:\C++\C++ OOP\OOP 23.12 STUDENT\OOP 23.12 STUDENT\OOP 23.12 STUDENT.cpp(226,27): warning C4018: <: несоответствие типов со знаком и без знака
+D:\C++\C++ OOP\OOP 23.12 STUDENT\OOP 23.12 STUDENT\OOP 23.12 STUDENT.cpp(237,27): warning C4018: <: несоответствие типов со знаком и без знака
+D:\C++\C++ OOP\OOP 23.12 STUDENT\OOP 23.12 STUDENT\OOP 23.12 STUDENT.cpp(313,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+D:\C++\C++ OOP\OOP 23.12 STUDENT\OOP 23.12 STUDENT\OOP 23.12 STUDENT.cpp(255): warning C4715: Student::GetGradeByHomeWork: значение возвращается не при всех путях выполнения
+D:\C++\C++ OOP\OOP 23.12 STUDENT\OOP 23.12 STUDENT\OOP 23.12 STUDENT.cpp(159): warning C4715: Student::GetGradeByPractic: значение возвращается не при всех путях выполнения
+D:\C++\C++ OOP\OOP 23.12 STUDENT\OOP 23.12 STUDENT\OOP 23.12 STUDENT.cpp(207): warning C4715: Student::GetGradeByExam: значение возвращается не при всех путях выполнения
+  OOP 23.12 STUDENT.vcxproj -> D:\C++\C++ OOP\OOP 23.12 STUDENT\x64\Debug\OOP 23.12 STUDENT.exe
