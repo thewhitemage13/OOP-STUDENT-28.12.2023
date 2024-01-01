@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <ctime>
 using namespace std;
 
@@ -7,8 +7,7 @@ class Data {
     unsigned short month;
     long long year;
 public:
-
-    Data() : Data(23,12,2023){}
+    Data() : Data(23, 12, 2023) {}
 
     Data(unsigned short day, unsigned short month, long long year)
     {
@@ -23,7 +22,7 @@ public:
         SetMonth(month);
         SetYear(2023);
     }
-    void PrintData()
+    void PrintData() const
     {
         cout << day << "." << month << "." << year;
     }
@@ -56,28 +55,25 @@ public:
     {
         return year;
     }
-
 };
 
 class Student {
-private: 
+private:
     string surname;
     string name;
     string middlename;
     string adress;
     string phonenumber;
-    unsigned int count = 16;
-    int* grade_of_practic = new int[count];
-    int* grade_of_homework = new int[count];
-    int* grade_of_exam = new int[count];
-    
-    int* grade_of_practic_new = new int[count + 1];
-    int* grade_of_homework_new = new int[count + 1];
-    int* grade_of_exam_new = new int[count + 1];
+    unsigned int countpractic;
+    unsigned int counthomework;
+    unsigned int countexam;
+    int* grade_of_practic = new int[countpractic];
+    int* grade_of_homework = new int[counthomework];
+    int* grade_of_exam = new int[countexam];
 
 public:
-    
-    Student() : Student("Lolo", "Mukhammed", "Kamel", "Vilkovskaya 38", "0687680685"){}
+
+    Student() : Student("Lolo", "Mukhammed", "Kamel", "Vilkovskaya 38", "0687680685") {}
 
     Student(string surname, string name, string middlname, string adress, string phonenumber)
     {
@@ -97,15 +93,15 @@ public:
         SetPhone("0687680685");
     }
 
-    ~Student() 
+    ~Student()
     {
-        if (grade_of_practic != nullptr || grade_of_homework!= nullptr || grade_of_exam != nullptr)
-        delete[] grade_of_practic;
+        if (grade_of_practic != nullptr || grade_of_homework != nullptr || grade_of_exam != nullptr)
+            delete[] grade_of_practic;
         delete[]grade_of_homework;
         delete[]grade_of_exam;
     }
-    ///////
-    void PrintStudent()
+
+    void PrintStudent() const
     {
         cout << "Surname: " << surname << "\n";
         cout << "Name: " << name << "\n";
@@ -116,150 +112,104 @@ public:
     //Practic
     void GenPractic()
     {
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < countpractic; i++)
         {
             grade_of_practic[i] = rand() % 12;
         }
-    }
-    void PrintPractic()
+    } 
+    void AddPractic(int newcountry)
     {
-        cout << "Practic: ";
-        for (int i = 0; i < count; i++)
+        int* temp = new int[countpractic + 1];
+        for (int i = 0; i < countpractic; i++)
         {
-            cout << grade_of_practic[i] << ", ";
+            temp[i] = grade_of_practic[i];
         }
-    }
-    void AddPractic(int newpractic)
-    {
-        for (int i = 0; i < count; i++)
-        {
-            grade_of_practic_new[i] = grade_of_practic[i];
-        }
-    }
-    void PrintNewPractic() const 
-    {
-        cout << "Add Practic: ";
-        for (int i = 0; i < count; i++)
-        {
-            cout << grade_of_practic_new[i] << ", ";
-        }
-    }
-    void FreeMemoryPractic()
-    {
-        delete[]grade_of_practic;
-        grade_of_practic = grade_of_practic_new;
-    }
 
+        temp[countpractic] = newcountry;
+        countpractic++;
+        for (int i = 0; i < countpractic; i++)
+        {
+            cout<<temp[i]<<", ";
+        }
+        delete[]grade_of_practic;
+        grade_of_practic = temp;
+    }
     int GetGradeByPractic(unsigned int index) const
     {
-        if (index < count)
+        if (index < countpractic)
         {
-            cout << "The grade you're looking for: " << grade_of_practic[index];
-
             return grade_of_practic[index];
+        }
+    }
+    //HomeWork
+    void GenHomeWork()
+    {
+        for (int i = 0; i < counthomework; i++)
+        {
+            grade_of_homework[i] = rand() % 12;
+        }
+    }
+    void AddHomeWork(int newcountry)
+    {
+        int* temp = new int[counthomework + 1];
+        for (int i = 0; i < counthomework; i++)
+        {
+            temp[i] = grade_of_homework[i];
+        }
+
+        temp[counthomework] = newcountry;
+        counthomework++;
+        for (int i = 0; i < counthomework; i++)
+        {
+            cout << temp[i] << ", ";
+        }
+        delete[]grade_of_homework;
+        grade_of_homework = temp;
+    }
+    int GetGradeByHomeWork(unsigned int index) const
+    {
+        if (index < counthomework)
+        {
+            return grade_of_homework[index];
         }
     }
     //Exam
     void GenExam()
     {
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < countexam; i++)
         {
             grade_of_exam[i] = rand() % 12;
         }
     }
-    void PrintExam()
+    void AddExam(int newcountry)
     {
-        cout << "Exam: ";
-        for (int i = 0; i < count; i++)
+        int* temp = new int[countexam + 1];
+        for (int i = 0; i < countexam; i++)
         {
-            cout << grade_of_exam[i] << ", ";
+            temp[i] = grade_of_exam[i];
         }
-    }
-    void AddExam(int newpractic)
-    {
-        for (int i = 0; i < count; i++)
-        {
-            grade_of_exam_new[i] = grade_of_exam[i];
-        }
-        grade_of_exam_new[count] = newpractic;
-        count++;
 
-    }
-    void PrintNewExam() const
-    {
-        cout << "Add Exam: ";
-        for (int i = 0; i < count; i++)
+        temp[countexam] = newcountry;
+        countexam++;
+        for (int i = 0; i < countexam; i++)
         {
-            cout << grade_of_exam_new[i] << ", ";
+            cout << temp[i] << ", ";
         }
-    }
-    void FreeMemoryExam()
-    {
         delete[]grade_of_exam;
-        grade_of_exam = grade_of_exam_new;
+        grade_of_exam = temp;
     }
-
     int GetGradeByExam(unsigned int index) const
     {
-        if (index < count)
+        if (index < countexam)
         {
-            cout << "The grade you're looking for: " << grade_of_exam[index];
             return grade_of_exam[index];
-        }
-    }
-    //Home Work
-    void GenHomeWork()
-    {
-        for (int i = 0; i < count; i++)
-        {
-            grade_of_homework[i] = rand() % 12;
-        }
-    }
-    void PrintHomeWork()
-    {
-        cout << "HomeWork: ";
-        for (int i = 0; i < count; i++)
-        {
-            cout << grade_of_homework[i] << ", ";
-        }
-    }
-    void AddHomeWork(int newpractic)
-    {
-        for (int i = 0; i < count; i++)
-        {
-            grade_of_homework_new[i] = grade_of_homework[i];
-        }
-        grade_of_homework_new[count] = newpractic;
-        count++;
-
-    }
-    void PrintNewHomeWork() const
-    {
-        cout << "Add HomeWork: ";
-        for (int i = 0; i < count; i++)
-        {
-            cout << grade_of_homework_new[i] << ", ";
-        }
-    }
-    void FreeMemoryHomeWork()
-    {
-        delete[]grade_of_homework;
-        grade_of_homework = grade_of_homework_new;
-    }
-
-    int GetGradeByHomeWork(unsigned int index) const
-    {
-        if (index < count)
-        {
-            cout <<"The grade you're looking for: " << grade_of_homework[index];
-            return grade_of_homework[index];
         }
     }
     //surname GetSet
     void SetSurname(string surname)
     {
         this->surname = surname;
-    }   
+    }
     string GetSurname() const
     {
         return surname;
@@ -269,7 +219,7 @@ public:
     {
         this->name = name;
     }
-    string GetName() const 
+    string GetName() const
     {
         return name;
     }
@@ -300,13 +250,29 @@ public:
     {
         return phonenumber;
     }
-    void SetCount(unsigned int count)
+    void SetPractic(unsigned int countpractic)
     {
-        this->count = count;
+        this->countpractic = countpractic;
     }
-    unsigned int GetCount()
+    unsigned int GetPractic()
     {
-        return count;
+        return countpractic;
+    }
+    void SetHomeWork(unsigned int counthomework)
+    {
+        this->counthomework = counthomework;
+    }
+    unsigned int GetHomeWork()
+    {
+        return counthomework;
+    }
+    void SetExam(unsigned int countexam)
+    {
+        this->countexam = countexam;
+    }
+    unsigned int GetExam()
+    {
+        return countexam;
     }
 };
 
@@ -314,44 +280,30 @@ int main()
 {
     srand(time(NULL));
     Student s;
-    Data birthday(04,02,2005);
-    Data start;
-    cout << "Mystat: " << "\n\n\n";
-    Student st("Mukhammed", "Lolo", "Kamel", "Vilkovkaya 38", "0687680685");
+    Data d;
+    Data da(04, 02, 2005);
     s.PrintStudent();
-    cout << "Birthday: ";
-    birthday.PrintData();
+        cout << "Birthday: ";
+    da.PrintData();
     cout << "\n\n";
     cout << "Start study: ";
-    start.PrintData();
+    d.PrintData();
+
     cout << "\n\n";
-    cout << "Grades: " << "\n\n";
     s.GenPractic();
-    s.PrintPractic();
-    cout << "\n\n";
     s.AddPractic(12);
-    s.PrintNewPractic();
-    s.FreeMemoryPractic();
+    s.AddPractic(12);
+    s.AddPractic(13);
     cout << "\n\n";
+    cout << s.GetGradeByPractic(1) << "\n\n";
     s.GenHomeWork();
-    s.PrintHomeWork();
+    s.AddHomeWork(12);
+    s.AddHomeWork(6);
     cout << "\n\n";
-    s.AddHomeWork(2);
-    s.PrintNewHomeWork();
-    s.FreeMemoryHomeWork();
-    cout << "\n\n";
+    cout << s.GetGradeByHomeWork(1) << "\n\n";
     s.GenExam();
-    s.PrintExam();
+    s.AddExam(12);
+    s.AddExam(2);
     cout << "\n\n";
-    s.AddExam(1);
-    s.PrintNewExam();
-    cout << "\n\n";
-    s.GetGradeByHomeWork(3);
-    cout << "\n\n";
-    s.GetGradeByPractic(2);
-    cout << "\n\n";
-    s.GetGradeByExam(4);
-    s.FreeMemoryExam();
-    s.FreeMemoryHomeWork();
-    s.FreeMemoryPractic();
+    cout << s.GetGradeByExam(0) << "\n\n";
 }
