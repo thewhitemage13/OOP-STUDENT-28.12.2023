@@ -7,6 +7,7 @@ class Data {
     unsigned short month;
     long long year;
 public:
+
     Data() : Data(23, 12, 2023) {}
 
     Data(unsigned short day, unsigned short month, long long year)
@@ -15,13 +16,12 @@ public:
         SetMonth(month);
         SetYear(year);
     }
-
-    Data(unsigned short day, unsigned short month)
+    //Делегирование
+    Data(unsigned short day, unsigned short month) : Data(day,month,year)
     {
-        SetDay(day);
-        SetMonth(month);
-        SetYear(2023);
+        SetYear(2005);
     }
+
     void PrintData() const
     {
         cout << day << "." << month << "." << year;
@@ -29,7 +29,7 @@ public:
     //day SetGet
     void SetDay(unsigned short day)
     {
-        if (day > 31) throw "ERROR!!!";
+        if (day ==0 || day > 31) throw "ERROR!!!";
         this->day = day;
     }
     unsigned short GetDay() const
@@ -39,7 +39,7 @@ public:
     //month SetGet
     void SetMonth(unsigned short month)
     {
-        if (month > 12) throw "ERROR!!!";
+        if (month==0 || month > 12) throw "ERROR!!!";
         this->month = month;
     }
     unsigned short GetMonth() const
@@ -64,9 +64,9 @@ private:
     string middlename;
     string adress;
     string phonenumber;
-    unsigned int countpractic;
-    unsigned int counthomework;
-    unsigned int countexam;
+    unsigned int countpractic = 0;
+    unsigned int counthomework = 0;
+    unsigned int countexam = 0;
     int* grade_of_practic = new int[countpractic];
     int* grade_of_homework = new int[counthomework];
     int* grade_of_exam = new int[countexam];
@@ -83,22 +83,20 @@ public:
         SetAdress(adress);
         SetPhone(phonenumber);
     }
-
-    Student(string surname, string name, string middlname, string adress)
+    //Делегирование
+    Student(string surname, string name, string middlname, string adress):Student(surname, name, middlename, adress,phonenumber)
     {
-        SetSurname(surname);
-        SetName(name);
-        SetMiddlName(middlname);
-        SetAdress(adress);
         SetPhone("0687680685");
     }
 
     ~Student()
     {
-        if (grade_of_practic != nullptr || grade_of_homework != nullptr || grade_of_exam != nullptr)
+        if (grade_of_practic != nullptr)
             delete[] grade_of_practic;
-        delete[]grade_of_homework;
-        delete[]grade_of_exam;
+        if (grade_of_homework != nullptr)
+            delete[] grade_of_homework;
+        if (grade_of_exam != nullptr)
+            delete[] grade_of_exam;
     }
 
     void PrintStudent() const
@@ -107,16 +105,9 @@ public:
         cout << "Name: " << name << "\n";
         cout << "Midlname: " << middlename << "\n";
         cout << "Adress: " << adress << "\n";
-        cout << "Phonnumber: " << phonenumber << "\n\n";
+        cout << "Phonnumber: " << phonenumber << "\n";
     }
-    //Practic
-    void GenPractic()
-    {
-        for (int i = 0; i < countpractic; i++)
-        {
-            grade_of_practic[i] = rand() % 12;
-        }
-    } 
+   
     void AddPractic(int newcountry)
     {
         int* temp = new int[countpractic + 1];
@@ -127,14 +118,19 @@ public:
 
         temp[countpractic] = newcountry;
         countpractic++;
-        for (int i = 0; i < countpractic; i++)
-        {
-            cout<<temp[i]<<", ";
-        }
         delete[]grade_of_practic;
         grade_of_practic = temp;
     }
-    int GetGradeByPractic(unsigned int index) const
+    //Добавил,чтоб "учитель" мог просмотреть все оценки
+    void PrintPractic() const
+    {
+        for (int i = 0; i < countpractic; i++)
+        {
+            cout << grade_of_practic[i] << ", ";
+        }
+    }
+
+    int GePracticRatesCount(unsigned int index) const
     {
         if (index < countpractic)
         {
@@ -142,13 +138,6 @@ public:
         }
     }
     //HomeWork
-    void GenHomeWork()
-    {
-        for (int i = 0; i < counthomework; i++)
-        {
-            grade_of_homework[i] = rand() % 12;
-        }
-    }
     void AddHomeWork(int newcountry)
     {
         int* temp = new int[counthomework + 1];
@@ -156,17 +145,20 @@ public:
         {
             temp[i] = grade_of_homework[i];
         }
-
         temp[counthomework] = newcountry;
         counthomework++;
-        for (int i = 0; i < counthomework; i++)
-        {
-            cout << temp[i] << ", ";
-        }
         delete[]grade_of_homework;
         grade_of_homework = temp;
     }
-    int GetGradeByHomeWork(unsigned int index) const
+    //Добавил,чтоб "учитель" мог просмотреть все оценки
+    void PrintHomeWork() const
+    {
+        for (int i = 0; i < counthomework; i++)
+        {
+            cout << grade_of_homework[i] << ", ";
+        }
+    }
+    int GetHomeWorkRatesCount(unsigned int index) const
     {
         if (index < counthomework)
         {
@@ -174,13 +166,6 @@ public:
         }
     }
     //Exam
-    void GenExam()
-    {
-        for (int i = 0; i < countexam; i++)
-        {
-            grade_of_exam[i] = rand() % 12;
-        }
-    }
     void AddExam(int newcountry)
     {
         int* temp = new int[countexam + 1];
@@ -188,17 +173,20 @@ public:
         {
             temp[i] = grade_of_exam[i];
         }
-
         temp[countexam] = newcountry;
         countexam++;
-        for (int i = 0; i < countexam; i++)
-        {
-            cout << temp[i] << ", ";
-        }
         delete[]grade_of_exam;
         grade_of_exam = temp;
     }
-    int GetGradeByExam(unsigned int index) const
+    //Добавил,чтоб "учитель" мог просмотреть все оценки
+    void PrintExam() const
+    {
+        for (int i = 0; i < countexam; i++)
+        {
+            cout << grade_of_exam[i] << ", ";
+        }
+    }
+    int GetExamRatesCount(unsigned int index) const
     {
         if (index < countexam)
         {
@@ -280,30 +268,29 @@ int main()
 {
     srand(time(NULL));
     Student s;
-    Data d;
-    Data da(04, 02, 2005);
+    Data da;
+    Data d(04,02,2005);
     s.PrintStudent();
-        cout << "Birthday: ";
+    cout << "Dirthday: ";
     da.PrintData();
-    cout << "\n\n";
+    cout << "\n";
     cout << "Start study: ";
     d.PrintData();
-
     cout << "\n\n";
-    s.GenPractic();
+    cout << "Practic: ";
     s.AddPractic(12);
-    s.AddPractic(12);
-    s.AddPractic(13);
+    s.AddPractic(8);
+    s.AddPractic(3);
+    s.PrintPractic();
     cout << "\n\n";
-    cout << s.GetGradeByPractic(1) << "\n\n";
-    s.GenHomeWork();
-    s.AddHomeWork(12);
-    s.AddHomeWork(6);
+    cout << "Home Work: ";
+    s.AddHomeWork(5);
+    s.AddHomeWork(10);
+    s.PrintHomeWork();
     cout << "\n\n";
-    cout << s.GetGradeByHomeWork(1) << "\n\n";
-    s.GenExam();
-    s.AddExam(12);
-    s.AddExam(2);
-    cout << "\n\n";
-    cout << s.GetGradeByExam(0) << "\n\n";
+    cout << "Exam: ";
+    s.AddExam(6);
+    s.AddExam(7);
+    s.PrintExam();
+    cout << "\n";
 }
