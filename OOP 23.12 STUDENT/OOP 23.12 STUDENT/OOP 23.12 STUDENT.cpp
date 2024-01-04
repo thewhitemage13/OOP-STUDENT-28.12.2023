@@ -7,7 +7,6 @@ class Data {
     unsigned short month;
     long long year;
 public:
-
     Data() : Data(23, 12, 2023) {}
 
     Data(unsigned short day, unsigned short month, long long year)
@@ -17,19 +16,17 @@ public:
         SetYear(year);
     }
     //Делегирование
-    Data(unsigned short day, unsigned short month) : Data(day,month,year)
-    {
-        SetYear(2005);
-    }
+    Data(unsigned short day, unsigned short month) : Data(day, month, 2005){}
+
 
     void PrintData() const
     {
-        cout << day << "." << month << "." << year;
+        cout << day << "." << month << "." << year << "\n";
     }
     //day SetGet
     void SetDay(unsigned short day)
     {
-        if (day ==0 || day > 31) throw "ERROR!!!";
+        if (day == 0 || day > 31) throw "ERROR!!! The day must be from 0 to 31 !!!";
         this->day = day;
     }
     unsigned short GetDay() const
@@ -39,7 +36,7 @@ public:
     //month SetGet
     void SetMonth(unsigned short month)
     {
-        if (month==0 || month > 12) throw "ERROR!!!";
+        if (month == 0 || month > 12) throw "ERROR!!! The day must be from 1 to 12 !!!";
         this->month = month;
     }
     unsigned short GetMonth() const
@@ -72,7 +69,6 @@ private:
     int* grade_of_exam = new int[countexam];
 
 public:
-
     Student() : Student("Lolo", "Mukhammed", "Kamel", "Vilkovskaya 38", "0687680685") {}
 
     Student(string surname, string name, string middlname, string adress, string phonenumber)
@@ -84,10 +80,8 @@ public:
         SetPhone(phonenumber);
     }
     //Делегирование
-    Student(string surname, string name, string middlname, string adress):Student(surname, name, middlename, adress,phonenumber)
-    {
-        SetPhone("0687680685");
-    }
+    Student(string surname, string name, string middlname, string adress):Student(surname, name, middlename, adress, "0687680685") {}
+
 
     ~Student()
     {
@@ -269,11 +263,10 @@ int main()
     srand(time(NULL));
     Student s;
     Data da;
-    Data d(04,02,2005);
+    Data d(04,02);
     s.PrintStudent();
     cout << "Dirthday: ";
     da.PrintData();
-    cout << "\n";
     cout << "Start study: ";
     d.PrintData();
     cout << "\n\n";
@@ -289,7 +282,7 @@ int main()
     s.PrintHomeWork();
     cout << "\n\n";
     cout << "Exam: ";
-    s.AddExam(6);
+    s.AddExam(6); 
     s.AddExam(7);
     s.PrintExam();
     cout << "\n";
