@@ -18,7 +18,6 @@ public:
     //Делегирование
     Data(unsigned short day, unsigned short month) : Data(day, month, 2005){}
 
-
     void PrintData() const
     {
         cout << day << "." << month << "." << year << "\n";
@@ -81,7 +80,6 @@ public:
     }
     //Делегирование
     Student(string surname, string name, string middlname, string adress):Student(surname, name, middlename, adress, "0687680685") {}
-
 
     ~Student()
     {
