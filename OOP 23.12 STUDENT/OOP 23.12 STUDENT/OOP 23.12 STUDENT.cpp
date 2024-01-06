@@ -232,14 +232,6 @@ public:
     {
         return phonenumber;
     }
-    void SetPractic(unsigned int countpractic)
-    {
-        this->countpractic = countpractic;
-    }
-    unsigned int GetPractic()
-    {
-        return countpractic;
-    }
 };
 
 int main()
@@ -269,6 +261,7 @@ int main()
     s.AddExam(6); 
     s.AddExam(7);
     s.AddExam(4);
+
     s.PrintExam();
     cout << "\n";
 }
